@@ -169,6 +169,7 @@ h1{
     label{
         padding: 3px;
         display: block;
+        font-weight: bold;
     }
     input, button{
         font-variant: small-caps;
