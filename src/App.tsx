@@ -61,6 +61,9 @@ function App() {
         <TableArea simbs={simbs} props={props}/>
 
       </main>
+      <footer>
+        <p>Feito por <a href="https://github.com/joaoitaloal" target="_blank">Italo<img id='logo-img' src="calc-react/github-icon.png" alt="logo do github" /></a></p>
+      </footer>
     </>
   )
 }
