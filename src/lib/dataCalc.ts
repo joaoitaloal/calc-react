@@ -1,5 +1,19 @@
 let maxAwait = 10000000;
 
+export function replaceOps(prop: string){
+    prop = prop.replace(/xor|\⊕/gi, "⊻")
+                .replace(/or|\./gi, "∨")
+                .replace(/and|\./gi, "∧")
+                .replace(/not|\~/gi, "¬")
+                .replace(/impinv|implicacaoinversa|\<=/gi, "←")
+                .replace(/imp|implicacao|\=>/gi, "→")
+                .replace(/xnor|\=/gi, "⇔")
+                .replace(/tautologia|\T/gi, "⊤")
+                .replace(/absurdo|\F/gi, "⊥")
+                .replace(/ /gi, "");
+    return prop
+}
+
 export function initialSimbValue(x: number, y: number){
     let states = "f";
     let calcTruth = (y+1)%(2**(x+1));

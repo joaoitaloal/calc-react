@@ -3,7 +3,8 @@ export function DisplayArea(props: any){
         props.rmvSimb(simb);
     }
     function delProp(prop: string){
-        props.rmvProp(prop);
+        let arr = [prop];
+        props.rmvProp(arr);
     }
 
     return(

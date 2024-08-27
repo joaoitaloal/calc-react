@@ -3,6 +3,7 @@ import './App.css'
 import { DisplayArea } from './components/DisplayArea'
 import { InputSimb, InputProp } from './components/InputKeyboard'
 import { TableArea } from './components/TableArea'
+import gh_icon from '/github-icon.png';
 
 function App() {
   const [simbs, setSimbs] = useState(new Array<string>);
@@ -14,26 +15,36 @@ function App() {
   function addProp(prop: string){
     setProps(props.concat(prop));
   }
+  //This one is a little more complicated because it checks props that use the simbol trying to be deleted and removes these props if the user confirms
   function rmvSimb(simb: string){
     let cancel = false;
+    let ask = false;
+    let rmv: Array<string> = [];
+
     props.forEach((prop) => {
-      if(prop.includes(simb)){
-        if (!window.confirm("As proposições que incluem este simbolo serão deletadas, tem certeza?")){
+      if(prop.includes(simb) && !cancel){
+        if (!ask && !window.confirm("As proposições que incluem este simbolo serão deletadas, tem certeza?")){
+          // I want to change this window.confirm to something better if i have time
           cancel = true;
-          return; //i think this is not good practice but it works maybe kinda
         }
-        rmvProp(prop)
+        ask = true;
+        rmv[props.indexOf(prop)] = prop;
       }
     });
     if(!cancel){
+      rmvProp(rmv);
       const arr = [...simbs];
       arr.splice(arr.indexOf(simb), 1);
       setSimbs(arr);
     }
   }
-  function rmvProp(prop: string){
+  function rmvProp(prop: Array<string>){
     const arr = [...props];
-    arr.splice(arr.indexOf(prop), 1);
+    
+    prop.forEach((p) => {
+      arr.splice(arr.indexOf(p), 1);
+    })
+
     setProps(arr);
   }
 
@@ -62,7 +73,7 @@ function App() {
 
       </main>
       <footer>
-        <p>Feito por <a href="https://github.com/joaoitaloal" target="_blank">Italo<img id='logo-img' src="calc-react/github-icon.png" alt="logo do github" /></a></p>
+        <p>Feito por <a href="https://github.com/joaoitaloal" target="_blank">Italo<img id='logo-img' src={gh_icon} alt="logo do github" /></a></p>
       </footer>
     </>
   )

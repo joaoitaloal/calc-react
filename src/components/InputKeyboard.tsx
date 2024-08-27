@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { calcProp } from "../lib/dataCalc"; 
+import { calcProp, replaceOps } from "../lib/dataCalc"; 
 
 export function InputSimb(props: any){
   const [text, setText] = useState('');
@@ -45,9 +45,10 @@ export function InputProp(props: any){
 
   function insertProp(){
     let allowed = true;
+    let tempText = replaceOps(text);
 
     props.props.forEach((prop: string) => {
-      if(prop == text){
+      if(prop == tempText){
         allowed = false;
         window.alert("proposição já inserida!");
         setText('');
@@ -57,14 +58,14 @@ export function InputProp(props: any){
 
     //test if the prop will not error before adding it
     if(allowed){
-      let testText = text;
+      let testText = tempText;
 
       props.simbs.forEach((simb: string) => {
         testText = testText.replace(new RegExp(simb, "g"), "1");
       });
 
       if(calcProp(testText.replace(/[⊤⊥]/g, "1")) !== ""){
-        props.addProp(text);
+        props.addProp(tempText);
       }
 
       setText('');
