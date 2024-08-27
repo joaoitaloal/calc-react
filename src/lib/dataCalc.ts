@@ -2,15 +2,16 @@ let maxAwait = 10000000;
 
 export function replaceOps(prop: string){
     prop = prop.replace(/xor|\⊕/gi, "⊻")
-                .replace(/or|\./gi, "∨")
+                .replace(/or|\+/gi, "∨")
                 .replace(/and|\./gi, "∧")
                 .replace(/not|\~/gi, "¬")
+                .replace(/xnor|biimp|\=/gi, "⇔")
                 .replace(/impinv|implicacaoinversa|\<=/gi, "←")
                 .replace(/imp|implicacao|\=>/gi, "→")
-                .replace(/xnor|\=/gi, "⇔")
                 .replace(/tautologia|\T/gi, "⊤")
                 .replace(/absurdo|\F/gi, "⊥")
                 .replace(/ /gi, "");
+    console.log(prop)
     return prop
 }
 

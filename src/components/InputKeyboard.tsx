@@ -1,8 +1,11 @@
 import { useState } from "react";
 import { calcProp, replaceOps } from "../lib/dataCalc"; 
+import { Options } from "./options";
 
 export function InputSimb(props: any){
   const [text, setText] = useState('');
+  //const [simbLimited, setSimbLimited] = useState(true);
+  const simbLimited = true;
 
   function insertSimb(){
     let allowed = true;
@@ -24,7 +27,14 @@ export function InputSimb(props: any){
       window.alert("simbolo inválido");
     }
 
-    if(allowed) props.addSimb(text);
+    if(allowed){
+      if (props.simbs.length < 10 || !simbLimited){
+        props.addSimb(text);
+      }
+      else{
+        window.alert('Número máximo de simbolos inseridos')
+      } 
+    } 
     setText('');
   }
 
@@ -34,6 +44,7 @@ export function InputSimb(props: any){
         insertSimb();
       }}>
       <label htmlFor="simb-input">Insira até 10 simbolos</label>
+      <Options />
       <input value={text} onChange={(e) => setText(e.target.value)} id="simb-input" type="text" />
       <button type="submit">inserir</button>
     </form>

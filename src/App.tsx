@@ -4,6 +4,7 @@ import { DisplayArea } from './components/DisplayArea'
 import { InputSimb, InputProp } from './components/InputKeyboard'
 import { TableArea } from './components/TableArea'
 import gh_icon from '/github-icon.png';
+import { ReferenceTable, ReferenceTableMobile } from './components/referenceTable'
 
 function App() {
   const [simbs, setSimbs] = useState(new Array<string>);
@@ -50,12 +51,9 @@ function App() {
 
   return (
     <>
-      {/* need to decide if the amount os symbols will be hard limited or just put a warning about putting too much of them */}
-      {/* also need to make a reference table for showing what kind of symbols are accepted as input(Left of app on desktop and Bellow on mobile, pushed when the table is created) */}
+      {/* Need to finish the options thing and had the idea to make an thing that calculates propositions from the table, like a karnaugh map, i need to do some research on that*/}
       {/* would also be cool to change the style a little */}
-      <div id='reference'>
-
-      </div>
+      <ReferenceTable />
       <main>
         <h1>Calculadora lógica</h1>
         
@@ -72,6 +70,7 @@ function App() {
         <TableArea simbs={simbs} props={props}/>
 
       </main>
+      <ReferenceTableMobile />
       <footer>
         <p>Feito por <a href="https://github.com/joaoitaloal" target="_blank">Italo<img id='logo-img' src={gh_icon} alt="logo do github" /></a></p>
       </footer>
