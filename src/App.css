@@ -23,7 +23,27 @@ h1{
 }
 
 @media (max-width: 768px) {
-    /*versão mobile*/
+    /* mobile */
+
+    #options-mobile{
+        margin: auto;
+
+        background-color: black;
+        color: white;
+
+        max-width: 300px;
+        margin: 10px auto 10px auto;
+        padding: 2px;
+        border-radius: 10px;
+
+        text-align: center;
+
+        label{
+            display: inline;
+            margin-bottom: 5px;
+        }
+    }
+    #options{ display: none; }
 
     #reference{
         display: none;
@@ -64,6 +84,12 @@ h1{
         width: 90%;
         margin: auto;
         border-radius: 0 0 10px 10px;
+        
+        input{
+            font-variant: small-caps;
+            margin: 0 1px 5px 10px;
+            height: 5vw;
+        }
     }
 
     #keyboard{
@@ -75,11 +101,6 @@ h1{
     label{
         padding: 1px;
         display: block;
-    }
-    input{
-        font-variant: small-caps;
-        margin: 0 1px 5px 10px;
-        height: 5vw;
     }
     #prop{
         text-shadow: 0px 0px 3px rgba(0, 0, 0, 0.511);
@@ -194,7 +215,26 @@ h1{
 }
 
 @media (min-width: 768px){
-    /*versão desktop*/
+    /* desktop */
+
+    #options{
+        position: fixed;
+        right: 0;
+
+        background-color: black;
+        color: white;
+
+        max-width: 24vw;
+        padding: 3px;
+        border-radius: 0 0 0 5px;
+
+        text-align: center;
+
+        label{
+            display: inline-block;
+        }
+    }
+    #options-mobile{ display: none; }
 
     #reference{
         position: fixed;
@@ -207,6 +247,7 @@ h1{
         border-radius: 0 0 5px 0;
 
         font-size: 0.8em;
+        text-align: center;
 
         h2{
             margin: auto 0px;
@@ -222,9 +263,7 @@ h1{
             text-align: center;
         }
     }
-    #reference-mobile{
-        display: none;
-    }
+    #reference-mobile{ display: none; }
 
     main{
         min-height: 92vh;

@@ -1,11 +1,10 @@
 import { useState } from "react";
 import { calcProp, replaceOps } from "../lib/dataCalc"; 
-import { Options } from "./options";
 
 export function InputSimb(props: any){
   const [text, setText] = useState('');
-  //const [simbLimited, setSimbLimited] = useState(true);
-  const simbLimited = true;
+  const simbLimited = props.options.simbLimited;
+  console.log(simbLimited)
 
   function insertSimb(){
     let allowed = true;
@@ -17,9 +16,9 @@ export function InputSimb(props: any){
       }
     });
 
-    if(text.length > 1){
+    if(text.length != 1){
       allowed = false;
-      window.alert("Apenas um caractere por simbolo!")
+      window.alert("Um caractere por simbolo!")
     }
 
     if(text.search(/[∧∨¬⊻→⇔().,TF⊤⊥~⊕= ]/) != -1){
@@ -44,7 +43,6 @@ export function InputSimb(props: any){
         insertSimb();
       }}>
       <label htmlFor="simb-input">Insira até 10 simbolos</label>
-      <Options />
       <input value={text} onChange={(e) => setText(e.target.value)} id="simb-input" type="text" />
       <button type="submit">inserir</button>
     </form>
@@ -97,7 +95,7 @@ export function InputProp(props: any){
       e.preventDefault();
       insertProp();
     }}>
-      <label htmlFor="prop-input">Insira uma proposição</label>
+      <label htmlFor="prop-input">Insira uma proposição, escreva ou use o teclado virtual</label>
       <input value={text} onChange={(e) => setText(e.target.value)} id="prop-input" type="text"/>
       <button type="submit" className="inserir">inserir</button>
 

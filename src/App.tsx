@@ -4,11 +4,13 @@ import { DisplayArea } from './components/DisplayArea'
 import { InputSimb, InputProp } from './components/InputKeyboard'
 import { TableArea } from './components/TableArea'
 import gh_icon from '/github-icon.png';
-import { ReferenceTable, ReferenceTableMobile } from './components/referenceTable'
+import { ReferenceTable} from './components/referenceTable'
+import { option, Options } from './components/options'
 
 function App() {
   const [simbs, setSimbs] = useState(new Array<string>);
   const [props, setProps] = useState(new Array<string>);
+  const [options, setOptions] = useState(new option());
 
   function addSimb(simb: string){
     setSimbs(simbs.concat(simb));
@@ -48,17 +50,25 @@ function App() {
 
     setProps(arr);
   }
+  function updateOptions(opt: option){
+    setOptions(opt);
+  }
+  
 
   return (
     <>
-      {/* Need to finish the options thing and had the idea to make an thing that calculates propositions from the table, like a karnaugh map, i need to do some research on that*/}
+      {/* https://www.radix-ui.com/primitives/docs/components/alert-dialog */}
+      {/* Maybe i should use interfaces for all props, it looks good on options.tsx */}
+      {/* Need to finish the options thing and had the idea to make an thing that calculates propositions from the table, like a karnaugh map, i need to do some research on that */}
       {/* would also be cool to change the style a little */}
-      <ReferenceTable />
+      {/* Should probably change styling method, the css file is getting absurdly big */}
+      <ReferenceTable mobile={false}/>
+      <Options options={options} updateOptions={updateOptions} mobile={false}/>
       <main>
         <h1>Calculadora lógica</h1>
         
         <section className='input-section'>
-          <InputSimb addSimb={addSimb} simbs={simbs}/>
+          <InputSimb addSimb={addSimb} simbs={simbs} options={options}/>
           <p id="warning">Por favor insira os simbolos antes de usa-los e utilize os parenteses em proposições grandes ou complexas</p>
           <div id='keyboard'> 
             <InputProp simbs={simbs} props={props} addProp={addProp}/>
@@ -70,7 +80,8 @@ function App() {
         <TableArea simbs={simbs} props={props}/>
 
       </main>
-      <ReferenceTableMobile />
+      <ReferenceTable mobile={true}/>
+      <Options options={options} updateOptions={updateOptions} mobile={true} />
       <footer>
         <p>Feito por <a href="https://github.com/joaoitaloal" target="_blank">Italo<img id='logo-img' src={gh_icon} alt="logo do github" /></a></p>
       </footer>
