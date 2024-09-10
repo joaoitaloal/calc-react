@@ -1,11 +1,12 @@
 import { useState } from 'react'
-import './App.css'
 import { DisplayArea } from './components/DisplayArea'
 import { InputSimb, InputProp } from './components/InputKeyboard'
 import { TableArea } from './components/TableArea'
-import gh_icon from '/github-icon.png';
 import { ReferenceTable} from './components/referenceTable'
 import { option, Options } from './components/options'
+import './App.css'
+import style from './styles/footer.module.scss'
+import gh_icon from '/github-icon.png';
 
 function App() {
   const [simbs, setSimbs] = useState(new Array<string>);
@@ -59,7 +60,7 @@ function App() {
     <>
       {/* https://www.radix-ui.com/primitives/docs/components/alert-dialog */}
       {/* Maybe i should use interfaces for all props, it looks good on options.tsx */}
-      {/* Need to finish the options thing and had the idea to make an thing that calculates propositions from the table, like a karnaugh map, i need to do some research on that */}
+      {/* had the idea to make an thing that calculates propositions from the table, like a karnaugh map, i need to do some research on that */}
       {/* would also be cool to change the style a little */}
       {/* Should probably change styling method, the css file is getting absurdly big */}
       <ReferenceTable mobile={false}/>
@@ -70,9 +71,7 @@ function App() {
         <section className='input-section'>
           <InputSimb addSimb={addSimb} simbs={simbs} options={options}/>
           <p id="warning">Por favor insira os simbolos antes de usa-los e utilize os parenteses em proposições grandes ou complexas</p>
-          <div id='keyboard'> 
-            <InputProp simbs={simbs} props={props} addProp={addProp}/>
-          </div>
+          <InputProp simbs={simbs} props={props} addProp={addProp}/>
         </section>
 
         <DisplayArea simbs={simbs} props={props} rmvSimb={rmvSimb} rmvProp={rmvProp}/>
@@ -82,8 +81,8 @@ function App() {
       </main>
       <ReferenceTable mobile={true}/>
       <Options options={options} updateOptions={updateOptions} mobile={true} />
-      <footer>
-        <p>Feito por <a href="https://github.com/joaoitaloal" target="_blank">Italo<img id='logo-img' src={gh_icon} alt="logo do github" /></a></p>
+      <footer className={style.footer}>
+        <p>Feito por <a href="https://github.com/joaoitaloal" target="_blank">Italo<img src={gh_icon} alt="logo do github" /></a></p>
       </footer>
     </>
   )

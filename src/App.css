@@ -15,67 +15,12 @@ h1{
     background-color: black;
     color: white;
 }
-#logo-img{
-    height: 20px;
-    position: relative;
-    top: 3px;
-    padding-left: 2px;
+input[type="text"]{
+    font-variant: normal;
 }
 
 @media (max-width: 768px) {
     /* mobile */
-
-    #options-mobile{
-        margin: auto;
-
-        background-color: black;
-        color: white;
-
-        max-width: 300px;
-        margin: 10px auto 10px auto;
-        padding: 2px;
-        border-radius: 10px;
-
-        text-align: center;
-
-        label{
-            display: inline;
-            margin-bottom: 5px;
-        }
-    }
-    #options{ display: none; }
-
-    #reference{
-        display: none;
-    }
-    #reference-mobile{
-        background-color: black;
-        color: white;
-
-        max-width: 300px;
-        margin: 10px auto 10px auto;
-        padding: 2px;
-        border-radius: 10px;
-
-        text-align: center;
-
-        p{
-            font-size: 0.8em;
-        }
-        h2{
-            margin: 0 5px;
-        }
-
-        table{
-            border-spacing: 0px 5px;
-            margin: auto;
-        }
-        td{
-            width: 2em;
-            border: solid rgba(255, 255, 255, 0.692) 1px;
-            text-align: center;
-        }
-    }
 
     main{
         min-height: 80vh;
@@ -84,6 +29,7 @@ h1{
         width: 90%;
         margin: auto;
         border-radius: 0 0 10px 10px;
+        padding-bottom: 5px;
         
         input{
             font-variant: small-caps;
@@ -92,178 +38,19 @@ h1{
         }
     }
 
-    #keyboard{
-        color: white;
-        padding: 5px;
-        background-color: black;
-        border: 2px solid rgb(21, 19, 26);
-    }
     label{
         padding: 1px;
         display: block;
     }
-    #prop{
-        text-shadow: 0px 0px 3px rgba(0, 0, 0, 0.511);
-        color: black;
-    }
-    .ops{
-        font-variant: normal;
-        font-size: 1rem;
-        text-align: center;
-        width: 6vw;
-        height: 6vw;
-        margin: 2px;
-        border: 1px solid grey;
-    }
-    input[type="text"]{
-        font-size: 1.5em;
-        font-variant: normal;
-    }
-    .ops:hover{
-        background-color: white;
-    }
-    .apagar{
-        margin: 5px;
-        background-color: rgb(255, 41, 3);
-        border: 1px solid black;
-    }
-
-    #inserted{
-        color: white;
-        font-weight: bolder;
-        display: contents;
-        margin: auto;
-    }
-    #inserted > div{
-        display: inline-block;
-        width: 20vw;
-        background-color: black;
-    }
-    .btsimb, .btprop{
-        display: inline;
-        padding: 3px;
-        border: 1px solid white;
-        margin-right: 20px;
-    }
-
-    #table{
-        table{
-            width: 30vw ;
-            margin: 10px auto 10px auto;
-            border-collapse: collapse;
-
-            th, td{
-                font-weight: bolder;
-                text-align: center;
-                border: 1px solid black;
-            }
-            td{
-                font-variant: small-caps;
-            }
-            .v{
-                background-color: green;
-            }
-            .f{
-                background-color: red;
-            }
-            .verdadeiroprop{
-                background-color: rgb(0, 107, 0);
-            }
-            .falsoprop{
-                background-color: rgb(207, 0, 0);
-            }
-        }
-
-    }
-
-
-    footer{
-        color: white;
-        text-align: center;
-    }
-    footer > p{
-        display: inline-block;
-        padding: 0 10px;
-    }
-    footer > p > img{
-        position: relative;
-        top: 3px;
-    }
-    footer > p > a{
-        color: inherit;
-    }
-    footer > p > a:hover{
-        color: rgb(0, 89, 255);
-    }
-
-    article{
-        text-align: left;
-    }
-    article > h1{
-        text-align: center;
-        padding: 10px;
+    input, button{
         font-variant: small-caps;
-    }
-    article > p{
-        margin: 0;
-        padding: 10px;
-    }
-    #link{
-        text-align: center;
+        margin: 0 1px 5px 10px;
     }
 
 }
 
 @media (min-width: 768px){
     /* desktop */
-
-    #options{
-        position: fixed;
-        right: 0;
-
-        background-color: black;
-        color: white;
-
-        max-width: 24vw;
-        padding: 3px;
-        border-radius: 0 0 0 5px;
-
-        text-align: center;
-
-        label{
-            display: inline-block;
-        }
-    }
-    #options-mobile{ display: none; }
-
-    #reference{
-        position: fixed;
-
-        background-color: black;
-        color: white;
-
-        max-width: 24vw;
-        padding: 3px;
-        border-radius: 0 0 5px 0;
-
-        font-size: 0.8em;
-        text-align: center;
-
-        h2{
-            margin: auto 0px;
-        }
-
-        table{
-            border-spacing: 0px 5px;
-            width: 24vw;
-        }
-        td{
-            width: auto;
-            border: solid rgba(255, 255, 255, 0.692) 1px;
-            text-align: center;
-        }
-    }
-    #reference-mobile{ display: none; }
 
     main{
         min-height: 92vh;
@@ -274,12 +61,6 @@ h1{
         border-radius: 0 0 10px 10px;
     }
 
-    #keyboard{
-        color: white;
-        padding: 10px;
-        background-color: black;
-        border: 2px solid rgb(21, 19, 26);
-    }
     label{
         padding: 3px;
         display: block;
@@ -289,114 +70,5 @@ h1{
         font-variant: small-caps;
         margin: 0 1px 5px 10px;
     }
-    #prop-input{
-        text-shadow: 0px 0px 10px black;
-        color: black;
-    }
-    .ops{
-        font-variant: normal;
-        text-align: center;
-        width: 3vw;
-        margin: 5px;
-        border: 1px solid grey;
-    }
-    #opmarcada{
-        border-width: 3px;
-        border-color: rgb(255, 255, 0);
-    }
-    input[type="text"]{
-        font-variant: normal;
-    }
-    .ops:hover{
-        background-color: white;
-    }
-    .apagar{
-        margin: 5px;
-        background-color: rgb(255, 41, 3);
-        border: 1px solid black;
-    }
-
-    #inserted{
-        color: white;
-        font-weight: bolder;
-        display: contents;
-        margin: auto;
-    }
-    #inserted > div{
-        display: inline-block;
-        width: 20vw;
-        background-color: black;
-    }
-    .btsimb, .btprop{
-        display: inline;
-        padding: 3px;
-        border: 1px solid white;
-        margin-right: 20px;
-    }
-
-    #table{
-        table{
-            width: 30vw ;
-            margin: 10px auto 10px auto;
-            border-collapse: collapse;
-
-            th, td{
-                font-weight: bolder;
-                text-align: center;
-                border: 1px solid black;
-            }
-            td{
-                font-variant: small-caps;
-            }
-            .v{
-                background-color: green;
-            }
-            .f{
-                background-color: red;
-            }
-            .verdadeiroprop{
-                background-color: rgb(0, 107, 0);
-            }
-            .falsoprop{
-                background-color: rgb(207, 0, 0);
-            }
-        }
-    }
-
     
-    footer{
-        color: white;
-        text-align: center;
-    }
-    footer > p{
-        display: inline-block;
-        padding: 0 10px;
-    }
-    footer > p > img{
-        position: relative;
-        top: 3px;
-    }
-    footer > p > a{
-        color: inherit;
-    }
-    footer > p > a:hover{
-        color: rgb(0, 89, 255);
-    }
-
-    article{
-        text-align: left;
-    }
-    article > h1{
-        text-align: center;
-        padding: 10px;
-        font-variant: small-caps;
-    }
-    article > p{
-        margin: 0;
-        padding: 10px;
-    }
-    #link{
-        text-align: center;
-    }
-
 }

@@ -1,0 +1,27 @@
+.table{
+    width: 30vw ;
+    margin: 10px auto 10px auto;
+    border-collapse: collapse;
+
+    th, td{
+        font-weight: bolder;
+        text-align: center;
+        border: 1px solid black;
+    }
+    td{
+        font-variant: small-caps;
+    }
+    .v{
+        background-color: green;
+    }
+    .f{
+        background-color: red;
+    }
+    .verdadeiroprop{
+        background-color: rgb(0, 107, 0);
+    }
+    .falsoprop{
+        background-color: rgb(207, 0, 0);
+    }
+    
+}

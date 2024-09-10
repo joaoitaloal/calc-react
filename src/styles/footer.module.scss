@@ -1,0 +1,28 @@
+
+.footer{
+    color: white;
+    text-align: center;
+
+    
+
+    p{
+        display: inline-block;
+        padding: 0 10px;
+    }
+    p > img{
+        position: relative;
+        top: 3px;
+    }
+    p > a{
+        color: inherit;
+    }
+    p > a:hover{
+        color: rgb(0, 89, 255);
+    }
+    p > a > img{
+        height: 25px;
+        position: relative;
+        top: 3px;
+        padding-left: 2px;
+    }  
+}

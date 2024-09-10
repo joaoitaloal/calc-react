@@ -1,3 +1,5 @@
+import style from "../styles/option.module.scss"
+
 export class option{
 
     simbLimited: boolean;
@@ -16,13 +18,12 @@ interface optionsProps{
 }
 
 export function Options(props: optionsProps){
-    let mobId = props.mobile?"-mobile":'';
 
     return(
-    <div id={'options'+mobId}>
+    <div className={props.mobile?`${style.options_mobile}`:`${style.options_desktop}`}>
         <h2>Opções</h2>
-        <label htmlFor={"simb-limited"+mobId}>Desativar limitação de símbolos</label>
-        <input checked={!props.options.simbLimited} type="checkbox" name={"simb-limited"+mobId} id={"simb-limited"+mobId} onChange={() => props.updateOptions(new option(!props.options.simbLimited, props.options.test))}/>
+        <label >Desativar limitação de símbolos</label>
+        <input checked={!props.options.simbLimited} type="checkbox" onChange={() => props.updateOptions(new option(!props.options.simbLimited, props.options.test))}/>
     </div>
     );
 }

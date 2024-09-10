@@ -1,0 +1,63 @@
+.reference_desktop{
+    position: fixed;
+
+    background-color: black;
+    color: white;
+
+    max-width: 24vw;
+    padding: 3px;
+    border-radius: 0 0 5px 0;
+
+    font-size: 0.8em;
+    text-align: center;
+
+    h2{
+        margin: auto 0px;
+    }
+
+    table{
+        border-spacing: 0px 5px;
+        width: 24vw;
+    }
+    td{
+        width: auto;
+        border: solid rgba(255, 255, 255, 0.692) 1px;
+        text-align: center;
+    }
+
+    @media (max-width: 768px) {
+        display: none;
+    }
+}
+.reference_mobile{
+    background-color: black;
+    color: white;
+
+    max-width: 300px;
+    margin: 10px auto 10px auto;
+    padding: 2px;
+    border-radius: 10px;
+
+    text-align: center;
+
+    p{
+        font-size: 0.8em;
+    }
+    h2{
+        margin: 0 5px;
+    }
+
+    table{
+        border-spacing: 0px 5px;
+        margin: auto;
+    }
+    td{
+        width: 2em;
+        border: solid rgba(255, 255, 255, 0.692) 1px;
+        text-align: center;
+    }
+
+    @media (min-width: 768px) {
+        display: none;
+    }
+}

@@ -1,0 +1,55 @@
+#keyboard{
+    @media(min-width: 768px){
+        color: white;
+        padding: 10px;
+        background-color: black;
+        border: 2px solid rgb(21, 19, 26);
+
+        .ops{
+            font-variant: normal;
+            text-align: center;
+            width: 3vw;
+            margin: 5px;
+            border: 1px solid grey;
+        }
+        input[type="text"]{
+            font-variant: normal;
+        }
+        .ops:hover{
+            background-color: white;
+        }
+        .apagar{
+            margin: 5px;
+            background-color: rgb(255, 41, 3);
+            border: 1px solid black;
+        }
+    }
+    @media(max-width: 768px){
+        color: white;
+        padding: 5px;
+        background-color: black;
+        border: 2px solid rgb(21, 19, 26);
+        
+        .ops{
+            font-variant: normal;
+            font-size: 1rem;
+            text-align: center;
+            width: 6vw;
+            height: 6vw;
+            margin: 2px;
+            border: 1px solid grey;
+        }
+        input[type="text"]{
+            font-size: 1.5em;
+            font-variant: normal;
+        }
+        .ops:hover{
+            background-color: white;
+        }
+        .apagar{
+            margin: 5px;
+            background-color: rgb(255, 41, 3);
+            border: 1px solid black;
+        }
+    }
+}

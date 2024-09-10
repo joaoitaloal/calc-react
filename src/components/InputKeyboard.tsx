@@ -1,10 +1,10 @@
 import { useState } from "react";
 import { calcProp, replaceOps } from "../lib/dataCalc"; 
+import style from "../styles/keyboard.module.scss"
 
 export function InputSimb(props: any){
   const [text, setText] = useState('');
   const simbLimited = props.options.simbLimited;
-  console.log(simbLimited)
 
   function insertSimb(){
     let allowed = true;
@@ -52,6 +52,8 @@ export function InputSimb(props: any){
 export function InputProp(props: any){
   const [text, setText] = useState('');
 
+  let opsClass = style.ops;
+
   function insertProp(){
     let allowed = true;
     let tempText = replaceOps(text);
@@ -91,6 +93,7 @@ export function InputProp(props: any){
   }
 
   return(
+    <div id={style.keyboard}>
     <form onSubmit={(e) => {
       e.preventDefault();
       insertProp();
@@ -99,21 +102,22 @@ export function InputProp(props: any){
       <input value={text} onChange={(e) => setText(e.target.value)} id="prop-input" type="text"/>
       <button type="submit" className="inserir">inserir</button>
 
-      <div id="adicionador">{props.simbs.map((e: string) => {
-        return (<input key={e} className="ops" id={"bt" + e} type="button" value={e} onClick={(e) => insertChar(e.currentTarget.value)}/>);
+      <div>{props.simbs.map((e: string) => {
+        return (<input key={e} className={opsClass} id={"bt" + e} type="button" value={e} onClick={(e) => insertChar(e.currentTarget.value)}/>);
       })}</div>
-            <input className="ops" type="button" value="∧" onClick={(e) => insertChar(e.currentTarget.value)}/>
-            <input className="ops" type="button" value="∨" onClick={(e) => insertChar(e.currentTarget.value)}/>
-            <input className="ops" type="button" value="¬" onClick={(e) => insertChar(e.currentTarget.value)}/>
-            <input className="ops" type="button" value="⊻" onClick={(e) => insertChar(e.currentTarget.value)}/>
-            <input className="ops" type="button" value="→" onClick={(e) => insertChar(e.currentTarget.value)}/>
-            <input className="ops" type="button" value="⇔" onClick={(e) => insertChar(e.currentTarget.value)}/>
-            <input className="ops" type="button" value="(" onClick={(e) => insertChar(e.currentTarget.value)}/>
-            <input className="ops" type="button" value=")" onClick={(e) => insertChar(e.currentTarget.value)}/>
-            <input className="ops" type="button" value="⊤" onClick={(e) => insertChar(e.currentTarget.value)}/>
-            <input className="ops" type="button" value="⊥" onClick={(e) => insertChar(e.currentTarget.value)}/>
-            <input className="apagar" type="button" value="apagar" onClick={deleteText}/>
-            <input className="apagar" type="button" value="limpar" onClick={clearText}/>
+            <input className={opsClass} type="button" value="∧" onClick={(e) => insertChar(e.currentTarget.value)}/>
+            <input className={opsClass} type="button" value="∨" onClick={(e) => insertChar(e.currentTarget.value)}/>
+            <input className={opsClass} type="button" value="¬" onClick={(e) => insertChar(e.currentTarget.value)}/>
+            <input className={opsClass} type="button" value="⊻" onClick={(e) => insertChar(e.currentTarget.value)}/>
+            <input className={opsClass} type="button" value="→" onClick={(e) => insertChar(e.currentTarget.value)}/>
+            <input className={opsClass} type="button" value="⇔" onClick={(e) => insertChar(e.currentTarget.value)}/>
+            <input className={opsClass} type="button" value="(" onClick={(e) => insertChar(e.currentTarget.value)}/>
+            <input className={opsClass} type="button" value=")" onClick={(e) => insertChar(e.currentTarget.value)}/>
+            <input className={opsClass} type="button" value="⊤" onClick={(e) => insertChar(e.currentTarget.value)}/>
+            <input className={opsClass} type="button" value="⊥" onClick={(e) => insertChar(e.currentTarget.value)}/>
+            <input className={style.apagar} type="button" value="apagar" onClick={deleteText}/>
+            <input className={style.apagar} type="button" value="limpar" onClick={clearText}/>
     </form>
+    </div>
   );
 }

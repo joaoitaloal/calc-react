@@ -1,3 +1,5 @@
+import style from "../styles/displayArea.module.scss";
+
 export function DisplayArea(props: any){
     function delSimb(simb: string){
         props.rmvSimb(simb);
@@ -8,13 +10,13 @@ export function DisplayArea(props: any){
     }
 
     return(
-        <div id="inserted">
+        <div id={style.inserted}>
             <div id="simb-inserted">
                 <p>Simbolos inseridos:</p>
                 {props.simbs.map((simb: string) => {
                     return (
                     <div key={'divs'+simb} id={'divs'+simb}>
-                        <p className="btsimb">{simb}</p>
+                        <p className={style.bt}>{simb}</p>
                         <input id={'del'+simb} type="button" value="apagar" onClick={() => delSimb(simb)}/>
                     </div>);
                 })}
@@ -24,7 +26,7 @@ export function DisplayArea(props: any){
                 {props.props.map((prop: string) => {
                     return (
                     <div key={'divs'+prop} id={'divs'+prop}>
-                        <p className="btprop">{prop}</p>
+                        <p className={style.bt}>{prop}</p>
                         <input id={'del'+prop} type="button" value="apagar" onClick={() => delProp(prop)}/>
                     </div>);
                 })}

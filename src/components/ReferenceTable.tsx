@@ -1,6 +1,8 @@
+import style from "../styles/referenceTable.module.scss"
+
 export function ReferenceTable(props: any){
     return (
-        <div id={'reference'+(props.mobile?'-mobile':'')}>
+        <div className={(props.mobile?`${style.reference_mobile}`:`${style.reference_desktop}`)}>
             <h2>Tabela de referência</h2>
             <p>As formas de escrever que estão na mesma linha dão o mesmo resultado:</p>
             <table>

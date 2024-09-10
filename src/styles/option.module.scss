@@ -1,0 +1,43 @@
+.options_desktop{
+    position: fixed;
+    right: 0;
+
+    background-color: black;
+    color: white;
+
+    max-width: 24vw;
+    padding: 3px;
+    border-radius: 0 0 0 5px;
+
+    text-align: center;
+
+    label{
+        display: inline-block;
+    }
+
+    @media (max-width: 768px){
+        display: none;
+    }
+}
+.options_mobile{
+    margin: auto;
+
+    background-color: black;
+    color: white;
+
+    max-width: 300px;
+    margin: 10px auto 10px auto;
+    padding: 2px;
+    border-radius: 10px;
+
+    text-align: center;
+
+    label{
+        display: inline;
+        margin-bottom: 5px;
+    }
+
+    @media (min-width: 768px){
+        display: none;
+    }
+}
