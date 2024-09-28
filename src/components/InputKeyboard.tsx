@@ -21,7 +21,7 @@ export function InputSimb(props: any){
       window.alert("Um caractere por simbolo!")
     }
 
-    if(text.search(/[∧∨¬⊻→⇔().,TF⊤⊥~⊕= ]/) != -1){
+    if(text.search(/[∧∨¬⊻→⇔().,TFtf⊤⊥~⊕= ]/) != -1){
       allowed = false;
       window.alert("simbolo inválido");
     }
