@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { calcProp, replaceOps } from "../lib/dataCalc"; 
 import style from "../styles/keyboard.module.scss"
 import DialogBox from "./Dialog";
