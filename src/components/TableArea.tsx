@@ -12,8 +12,8 @@ export function TableArea(props: any){
             cells[x] = <td key={`x${x}y${cellProps.y}`} id={`x${x}y${cellProps.y}`} className={value == "v"?`${style.v}`:`${style.f}`}>{value}</td>
             simbsValue[x] = value;
         }
-        for(let x2 = 0; x2 < props.props.length; x2++){
-            let value = readProp(props.simbs, simbsValue, props.props[x2]);
+        for(let x2 = 0; x2 < props.propos.length; x2++){
+            let value = readProp(props.simbs, simbsValue, props.propos[x2]);
             cells[x] = <td key={`x${x}y${cellProps.y}`} id={`x${x}y${cellProps.y}`} className={value=="1"?`${style.verdadeiroprop}`:`${style.falsoprop}`}>{value=="1"?"v":"f"}</td>
             x++;
         }
@@ -40,8 +40,8 @@ export function TableArea(props: any){
                         {props.simbs.map((e: string) => {
                             return (<th key={e} className={"sim"+String(props.simbs.indexOf(e))}>{e}</th>)
                         })}
-                        {props.props.map((e: string) => {
-                            return (<th key={e} className={"prop"+String(props.props.indexOf(e))}>{e}</th>)
+                        {props.propos.map((e: string) => {
+                            return (<th key={e} className={"prop"+String(props.propos.indexOf(e))}>{e}</th>)
                         })}
                     </tr>
                 </thead>

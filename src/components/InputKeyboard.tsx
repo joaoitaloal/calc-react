@@ -1,6 +1,7 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { calcProp, replaceOps } from "../lib/dataCalc"; 
 import style from "../styles/keyboard.module.scss"
+import DialogBox from "./Dialog";
 
 export function InputSimb(props: any){
   const [text, setText] = useState('');
@@ -12,18 +13,22 @@ export function InputSimb(props: any){
     props.simbs.forEach((simb: string) => {
       if(simb == text){
         allowed = false;
-        window.alert("Simbolo já inserido!")
+        props.alert("Simbolo já inserido!")
       }
     });
 
-    if(text.length != 1){
+    if(text.length == 0){
       allowed = false;
-      window.alert("Um caractere por simbolo!")
+      props.alert("Insira um simbolo!")
+    }
+    else if(text.length > 1){
+      allowed = false;
+      props.alert("Apenas um caractere por simbolo!")
     }
 
-    if(text.search(/[∧∨¬⊻→⇔().,TF⊤⊥~⊕= ]/) != -1){
+    if(text.search(/[∧∨¬⊻→⇔().,TFtf⊤⊥~⊕= ]/) != -1){
       allowed = false;
-      window.alert("simbolo inválido");
+      props.alert("simbolo inválido");
     }
 
     if(allowed){
@@ -31,7 +36,7 @@ export function InputSimb(props: any){
         props.addSimb(text);
       }
       else{
-        window.alert('Número máximo de simbolos inseridos')
+        props.alert('Número máximo de simbolos inseridos')
       } 
     } 
     setText('');
@@ -43,7 +48,7 @@ export function InputSimb(props: any){
         insertSimb();
       }}>
       <label htmlFor="simb-input">Insira até 10 simbolos</label>
-      <input value={text} onChange={(e) => setText(e.target.value)} id="simb-input" type="text" />
+      <input value={text} onChange={(e) => setText(e.target.value)} id="simb-input" type="text" onFocus={() => props.setFocus(true)} autoFocus={props.focus}/>
       <button type="submit">inserir</button>
     </form>
   );
@@ -58,7 +63,7 @@ export function InputProp(props: any){
     let allowed = true;
     let tempText = replaceOps(text);
 
-    props.props.forEach((prop: string) => {
+    props.propos.forEach((prop: string) => {
       if(prop == tempText){
         allowed = false;
         window.alert("proposição já inserida!");
@@ -99,7 +104,7 @@ export function InputProp(props: any){
       insertProp();
     }}>
       <label htmlFor="prop-input">Insira uma proposição, escreva ou use o teclado virtual</label>
-      <input value={text} onChange={(e) => setText(e.target.value)} id="prop-input" type="text"/>
+      <input value={text} onChange={(e) => setText(e.target.value)} id="prop-input" type="text" onFocus={() => props.setFocus(true)} autoFocus={props.focus}/>
       <button type="submit" className="inserir">inserir</button>
 
       <div>{props.simbs.map((e: string) => {
@@ -121,3 +126,26 @@ export function InputProp(props: any){
     </div>
   );
 }
+
+function InputSection(props: any){
+  const [alertOpen, setAlertOpen] = useState(false);
+  const [alertDescription, setAlertDescription] = useState('');
+  const [inputFocus, setInputFocus] = useState(true);
+
+  function updateAlert(description: string){
+    setAlertOpen(prevState => !prevState);
+    setAlertDescription(description);
+  }
+  
+  return(
+    <section className='input-section'>
+      <InputSimb addSimb={props.addSimb} simbs={props.simbs} options={props.options} alert={updateAlert} focus={inputFocus} setFocus={setInputFocus}/>
+        <p id="warning">Por favor insira os simbolos antes de usa-los e utilize os parenteses em proposições grandes ou complexas</p>
+      <InputProp simbs={props.simbs} propos={props.propos} addProp={props.addProp} alert={updateAlert} focus={!inputFocus} setFocus={setInputFocus}/>
+      <button onClick={() => setAlertOpen(prevState => !prevState)}>test</button>
+      <DialogBox alertOpen={alertOpen} updateAlert={updateAlert} description={alertDescription}/>
+    </section>
+  )
+}
+
+export default InputSection;

@@ -23,7 +23,7 @@ export function DisplayArea(props: any){
             </div>
             <div id="prop-inserted">
                 <p>Proposições inseridas:</p>
-                {props.props.map((prop: string) => {
+                {props.propos.map((prop: string) => {
                     return (
                     <div key={'divs'+prop} id={'divs'+prop}>
                         <p className={style.bt}>{prop}</p>
