@@ -1,12 +1,6 @@
-.Overlay {
-	background-color: var(--black-a9);
-	position: fixed;
-	inset: 0;
-	animation: overlayShow 150ms cubic-bezier(0.16, 1, 0.3, 1);
-}
-
 .Content {
-	background-color: white;
+	background-color: black;
+    color: white;
 	border-radius: 6px;
 	box-shadow:
 		hsl(206 22% 7% / 35%) 0px 10px 38px -10px,
@@ -83,15 +77,6 @@
 		&:focus {
 			box-shadow: 0 0 0 2px var(--mauve-7);
 		}
-	}
-}
-
-@keyframes overlayShow {
-	from {
-		opacity: 0;
-	}
-	to {
-		opacity: 1;
 	}
 }
 

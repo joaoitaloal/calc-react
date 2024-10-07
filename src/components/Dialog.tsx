@@ -10,7 +10,7 @@ function DialogBox(props: any){
             <Dialog.Content className={styles.Content}>
             <Dialog.Title className={styles.Title}>AVISO!</Dialog.Title>
             <Dialog.Description className={styles.Description}>
-                {props.description}
+                {props.description || "Error: No description"}
             </Dialog.Description>
             <Dialog.Close asChild>
             <button className={styles.Button}>OK</button>
