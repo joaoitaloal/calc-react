@@ -11,12 +11,12 @@ function ConfirmBox(props: any){
             <AlertDialog.Description className={styles.Description}>
                 {props.description || "Error: No description"}
             </AlertDialog.Description>
-            <div style={{ display: "flex", gap: 25, justifyContent: "flex-end" }}>
+            <div style={{ display: "flex", gap: 50, justifyContent: 'center'}}>
                 <AlertDialog.Cancel asChild>
-                    <button className={styles.Button} onClick={() => props.setConfirm(false)}>Cancelar</button>
+                    <button id={styles.cancel} className={styles.Button} onClick={() => props.setConfirm(false)}>cancelar</button>
                 </AlertDialog.Cancel>
                 <AlertDialog.Action asChild>
-                    <button className={styles.Button} onClick={() => props.setConfirm(true)}>Sim</button>
+                    <button id={styles.confirm} className={styles.Button} onClick={() => props.setConfirm(true)}>sim</button>
                 </AlertDialog.Action>
             </div>
         </AlertDialog.Content>

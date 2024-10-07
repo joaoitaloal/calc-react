@@ -159,7 +159,6 @@ function InputSection(props: any){
       <InputSimb addSimb={props.addSimb} simbs={props.simbs} options={props.options} alert={updateAlert}/>
         <p id="warning">Por favor insira os simbolos antes de usa-los e utilize os parenteses em proposições grandes ou complexas</p>
       <InputProp simbs={props.simbs} propos={props.propos} addProp={props.addProp} alert={updateAlert}/>
-      <button onClick={() => setAlertOpen(prevState => !prevState)}>{inputFocus?'true':'false'}</button>
       <DialogBox alertOpen={alertOpen} updateAlert={updateAlert} description={alertDescription}/>
     </section>
   )

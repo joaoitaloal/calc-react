@@ -90,7 +90,6 @@ export function DisplayArea(props: any){
                 })}
             </div>
         </div>
-        <button onClick={() => setOpenConfirm(prevState => !prevState)}>{confirm?'true':'false'}</button>
         <ConfirmBox open={openConfirm} updateConfirm={updateConfirm} description={confirmDescription} setConfirm={setConfirm}/>
         </>
     );
