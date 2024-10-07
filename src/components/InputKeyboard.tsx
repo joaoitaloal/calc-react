@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { calcProp, replaceOps } from "../lib/dataCalc"; 
 import style from "../styles/keyboard.module.scss"
 import DialogBox from "./Dialog";
@@ -48,7 +48,7 @@ export function InputSimb(props: any){
         insertSimb();
       }}>
       <label htmlFor="simb-input">Insira até 10 simbolos</label>
-      <input value={text} onChange={(e) => setText(e.target.value)} id="simb-input" type="text" onFocus={() => props.setFocus(true)} autoFocus={props.focus}/>
+      <input value={text} onChange={(e) => setText(e.target.value)} id="simb-input" type="text" autoFocus />
       <button type="submit">inserir</button>
     </form>
   );
@@ -66,7 +66,7 @@ export function InputProp(props: any){
     props.propos.forEach((prop: string) => {
       if(prop == tempText){
         allowed = false;
-        window.alert("proposição já inserida!");
+        props.alert("proposição já inserida!");
         setText('');
         return;
       }
@@ -80,8 +80,11 @@ export function InputProp(props: any){
         testText = testText.replace(new RegExp(simb, "g"), "1");
       });
 
-      if(calcProp(testText.replace(/[⊤⊥]/g, "1")) !== ""){
+      let testedProp = calcProp(testText.replace(/[⊤⊥]/g, "1"))
+      if(testedProp === '1' || testedProp === '0'){
         props.addProp(tempText);
+      }else{
+        props.alert(testedProp)
       }
 
       setText('');
@@ -104,11 +107,11 @@ export function InputProp(props: any){
       insertProp();
     }}>
       <label htmlFor="prop-input">Insira uma proposição, escreva ou use o teclado virtual</label>
-      <input value={text} onChange={(e) => setText(e.target.value)} id="prop-input" type="text" onFocus={() => props.setFocus(true)} autoFocus={props.focus}/>
+      <input value={text} onChange={(e) => setText(e.target.value)} id="prop-input" type="text"/>
       <button type="submit" className="inserir">inserir</button>
 
       <div>{props.simbs.map((e: string) => {
-        return (<input key={e} className={opsClass} id={"bt" + e} type="button" value={e} onClick={(e) => insertChar(e.currentTarget.value)}/>);
+        return (<input key={e} className={opsClass} id={"bt" + e} type="button" value={e} onClick={(e) => insertChar(e.currentTarget.value)} />);
       })}</div>
             <input className={opsClass} type="button" value="∧" onClick={(e) => insertChar(e.currentTarget.value)}/>
             <input className={opsClass} type="button" value="∨" onClick={(e) => insertChar(e.currentTarget.value)}/>
@@ -131,6 +134,20 @@ function InputSection(props: any){
   const [alertOpen, setAlertOpen] = useState(false);
   const [alertDescription, setAlertDescription] = useState('');
   const [inputFocus, setInputFocus] = useState(true);
+  
+  // Focus control after the alert
+  useEffect(() =>{
+    if(document.activeElement === document.getElementById('simb-input')){
+      setInputFocus(true)
+    }else if(document.activeElement === document.getElementById('prop-input')){
+      setInputFocus(false)
+    }
+    if(inputFocus){
+      document.getElementById('simb-input')?.focus()
+    }else{
+      document.getElementById('prop-input')?.focus()
+    }
+  }, [alertOpen])
 
   function updateAlert(description: string){
     setAlertOpen(prevState => !prevState);
@@ -139,10 +156,10 @@ function InputSection(props: any){
   
   return(
     <section className='input-section'>
-      <InputSimb addSimb={props.addSimb} simbs={props.simbs} options={props.options} alert={updateAlert} focus={inputFocus} setFocus={setInputFocus}/>
+      <InputSimb addSimb={props.addSimb} simbs={props.simbs} options={props.options} alert={updateAlert}/>
         <p id="warning">Por favor insira os simbolos antes de usa-los e utilize os parenteses em proposições grandes ou complexas</p>
-      <InputProp simbs={props.simbs} propos={props.propos} addProp={props.addProp} alert={updateAlert} focus={!inputFocus} setFocus={setInputFocus}/>
-      <button onClick={() => setAlertOpen(prevState => !prevState)}>test</button>
+      <InputProp simbs={props.simbs} propos={props.propos} addProp={props.addProp} alert={updateAlert}/>
+      <button onClick={() => setAlertOpen(prevState => !prevState)}>{inputFocus?'true':'false'}</button>
       <DialogBox alertOpen={alertOpen} updateAlert={updateAlert} description={alertDescription}/>
     </section>
   )

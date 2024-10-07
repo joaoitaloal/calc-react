@@ -7,11 +7,14 @@ import { option, Options } from './components/options'
 import './App.css'
 import style from './styles/footer.module.scss'
 import gh_icon from '/github-icon.png';
+import ConfirmBox from './components/Confirm'
 
 function App() {
   const [simbs, setSimbs] = useState(new Array<string>);
   const [propos, setProps] = useState(new Array<string>);
   const [options, setOptions] = useState(new option());
+  const [openConfirm, setOpenConfirm] = useState(false);
+  const [confirmDescription, setConfirmDescription] = useState('');
   
   function addSimb(simb: string){
     setSimbs(simbs.concat(simb));
@@ -22,6 +25,7 @@ function App() {
   //This one is a little more complicated because it checks props that use the simbol trying to be deleted and removes these props if the user confirms
   function rmvSimb(simb: string){
     let cancel = false;
+    // I dont remember what that boolean does 
     let ask = false;
     let rmv: Array<string> = [];
 
@@ -79,6 +83,8 @@ function App() {
       <footer className={style.footer}>
         <p>Feito por <a href="https://github.com/joaoitaloal" target="_blank">Italo<img src={gh_icon} alt="logo do github" /></a></p>
       </footer>
+
+      <ConfirmBox open={openConfirm} setOpen={setOpenConfirm} description={confirmDescription} />
     </>
   )
 }

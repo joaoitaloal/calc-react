@@ -31,9 +31,10 @@ export function readProp(simbs: Array<string>, values: Array<string>, prop: stri
         prop = prop.replace(new RegExp(simb, "g"), values[simbs.indexOf(simb)]).replace(/v|\⊤/g,"1").replace(/f|\⊥/g,"0");
     })
 
-    prop = calcProp(prop)
+    prop = calcProp(prop);
 
-    return prop;
+    if(prop === '1' || prop === '0') return prop;
+    else return '';
 }
 
 export function calcProp(prop: string){
@@ -116,9 +117,8 @@ export function calcProp(prop: string){
         }
     }
     //probably not best practice, could search for the correct way to do it
-    if(error !== null){
-        window.alert(error)
-        return "";
+    if(error){
+        return error.toString();
     }
     return prop;
 }
