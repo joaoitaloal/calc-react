@@ -1,4 +1,4 @@
-let maxAwait = 10000000;
+const maxAwait = 10000000;
 
 export function replaceOps(prop: string){
     prop = prop.replace(/xor|\⊕/gi, "⊻")
@@ -40,17 +40,25 @@ export function readProp(simbs: Array<string>, values: Array<string>, prop: stri
 export function calcProp(prop: string){
     let loop = 0;
     let error = null;
-    //Loop until we get a truth or false, unless it takes to much then it gives up and returns ""
-    while(prop != "1" && prop != "0" && !error){
-        //Se o loop durar exageradamente muito, provavelmente ele não vai terminar então retorna um "erro"
-        loop +=1;
-        if(loop > maxAwait){ throw new Error("Tempo de espera excedido, provavelmente uma fórmula mal formada"); }
-        //Os próximos ifs basicamente checam em sequência e em ordem de precedência do operador cada caractére que representa algum operador e resolve eles
-        try{
+    //Loop until we get a true("1") or false("0"), unless it takes to much time then it gives up and returns ""
+    try{
+        if(prop.split(')').length != prop.split('(').length){ throw new Error("feche os parênteses!"); }
+        if(!prop.includes("1") && !prop.includes("0")){ throw new Error("Inclua um simbolo na proposição"); }
+        while(prop != "1" && prop != "0" && !error){
+            //Se o loop durar exageradamente muito, provavelmente ele não vai terminar então retorna um erro
+            loop +=1;
+            if(loop > maxAwait){ throw new Error("Tempo de espera excedido, provavelmente uma fórmula mal formada"); }
+            //Os próximos ifs basicamente checam em sequência e em ordem de precedência do operador cada caractere que representa algum operador e resolve eles
             if(prop.includes("(")){
                 if(!prop.includes(")")){ throw new Error("feche os parênteses!"); }
                 let iniparen = prop.indexOf("(")+1;
-                let fimparen = prop.lastIndexOf(")")-1;
+                let fimparen = prop.indexOf(")")-1;
+                let parenCount = prop.substring(iniparen, fimparen).split('(').length-1;
+
+                while(parenCount > 0){
+                    fimparen = prop.indexOf(")", fimparen+2)-1
+                    parenCount -= 1;
+                }
                 
                 //Entregar o conteudo do parentese para ser processado na própria função
                 let newprop = prop.slice(iniparen,fimparen+1);
@@ -112,12 +120,12 @@ export function calcProp(prop: string){
                 //Se todos os operadores forem calculados e o resultado não for v nem f retornar um erro para evitar que loope pra sempre
                 throw new Error("Não foi possível calcular, provavelmente uma fórmula mal formada");
             }
-        }catch(e){
-            error = e;
         }
+    }catch(e){
+        error = e;
     }
     //probably not best practice, could search for the correct way to do it
-    if(error){
+    if(error != null){
         return error.toString();
     }
     return prop;
