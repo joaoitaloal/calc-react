@@ -5,9 +5,9 @@ export function replaceOps(prop: string){
                 .replace(/or|\+/gi, "∨")
                 .replace(/and|\./gi, "∧")
                 .replace(/not|\~/gi, "¬")
-                .replace(/xnor|biimp|\=/gi, "⇔")
                 .replace(/impinv|implicacaoinversa|\<=/gi, "←")
                 .replace(/imp|implicacao|\=>/gi, "→")
+                .replace(/xnor|biimp|\=/gi, "⇔")
                 .replace(/tautologia|\T/gi, "⊤")
                 .replace(/absurdo|\F/gi, "⊥")
                 .replace(/ /gi, "");
@@ -26,7 +26,7 @@ export function initialSimbValue(x: number, y: number){
 }
 
 export function readProp(simbs: Array<string>, values: Array<string>, prop: string){
-    //replace each symbol for its truth value, then pass it to the calc function
+    //replace each symbol with its truth value, then pass it to the calc function
     simbs.forEach((simb) => {
         prop = prop.replace(new RegExp(simb, "g"), values[simbs.indexOf(simb)]).replace(/v|\⊤/g,"1").replace(/f|\⊥/g,"0");
     })
@@ -40,7 +40,7 @@ export function readProp(simbs: Array<string>, values: Array<string>, prop: stri
 export function calcProp(prop: string){
     let loop = 0;
     let error = null;
-    //Loop until we get a true("1") or false("0"), unless it takes to much time then it gives up and returns ""
+    //Loop until we get a true("1") or false("0"), unless it takes too much time then it gives up and returns ""
     try{
         if(prop.split(')').length != prop.split('(').length){ throw new Error("feche os parênteses!"); }
         if(!prop.includes("1") && !prop.includes("0")){ throw new Error("Inclua um simbolo na proposição"); }
